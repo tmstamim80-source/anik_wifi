@@ -1,0 +1,252 @@
+{
+  "entities": {
+    "customer": {
+      "title": "Customer",
+      "description": "WiFi/ISP Customer profile, technical connection details, and billing information",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "Unique Customer ID (e.g. WIFI-000001)",
+          "maxLength": 64
+        },
+        "name": {
+          "type": "string",
+          "description": "Full name of the customer",
+          "maxLength": 128
+        },
+        "mobile": {
+          "type": "string",
+          "description": "Primary mobile contact number",
+          "maxLength": 32
+        },
+        "alternativeMobile": {
+          "type": "string",
+          "description": "Alternative contact number",
+          "maxLength": 32
+        },
+        "email": {
+          "type": "string",
+          "description": "Customer email address",
+          "maxLength": 128
+        },
+        "address": {
+          "type": "string",
+          "description": "Physical street address or house number",
+          "maxLength": 256
+        },
+        "area": {
+          "type": "string",
+          "description": "Village, ward, or zone area",
+          "maxLength": 128
+        },
+        "packageName": {
+          "type": "string",
+          "description": "Internet package plan name",
+          "maxLength": 64
+        },
+        "speed": {
+          "type": "string",
+          "description": "Bandwidth speed (e.g., 20 Mbps)",
+          "maxLength": 64
+        },
+        "monthlyBill": {
+          "type": "number",
+          "description": "Standard monthly subscription fee in BDT"
+        },
+        "connectionType": {
+          "type": "string",
+          "description": "Physical link type (Fiber, Cat6, Wireless, PPPoE, Static)",
+          "maxLength": 64
+        },
+        "routerId": {
+          "type": "string",
+          "description": "Router serial number or ONU device ID",
+          "maxLength": 64
+        },
+        "macAddress": {
+          "type": "string",
+          "description": "MAC address of router/ONU",
+          "maxLength": 64
+        },
+        "ipAddress": {
+          "type": "string",
+          "description": "Assigned static or dynamic IP address",
+          "maxLength": 64
+        },
+        "wifiUsername": {
+          "type": "string",
+          "description": "PPPoE or Radius authentication username",
+          "maxLength": 64
+        },
+        "connectionDate": {
+          "type": "string",
+          "description": "Date connection was initiated (YYYY-MM-DD)",
+          "maxLength": 32
+        },
+        "installationDate": {
+          "type": "string",
+          "description": "Date physical installation was completed (YYYY-MM-DD)",
+          "maxLength": 32
+        },
+        "lastPaymentDate": {
+          "type": "string",
+          "description": "Date of latest payment (YYYY-MM-DD)",
+          "maxLength": 32
+        },
+        "lastPaymentAmount": {
+          "type": "number",
+          "description": "Amount paid in latest transaction"
+        },
+        "dueAmount": {
+          "type": "number",
+          "description": "Outstanding unpaid balance"
+        },
+        "nextPaymentDate": {
+          "type": "string",
+          "description": "Upcoming billing due date (YYYY-MM-DD)",
+          "maxLength": 32
+        },
+        "paymentStatus": {
+          "type": "string",
+          "description": "Status of billing (Paid, Due, Partial)",
+          "enum": ["Paid", "Due", "Partial"]
+        },
+        "status": {
+          "type": "string",
+          "description": "Operational customer status (Active, Inactive, Suspended, Due)",
+          "enum": ["Active", "Inactive", "Suspended", "Due"]
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp when record was created"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Timestamp when record was last modified"
+        }
+      },
+      "required": ["uid", "name", "mobile", "packageName", "monthlyBill", "status"]
+    },
+    "payment": {
+      "title": "Payment Record",
+      "description": "Transaction record for a customer bill payment",
+      "type": "object",
+      "properties": {
+        "customerId": {
+          "type": "string",
+          "description": "Customer Document ID or UID",
+          "maxLength": 64
+        },
+        "customerUid": {
+          "type": "string",
+          "description": "Customer display UID",
+          "maxLength": 64
+        },
+        "customerName": {
+          "type": "string",
+          "description": "Name of the customer",
+          "maxLength": 128
+        },
+        "amount": {
+          "type": "number",
+          "description": "Payment amount collected"
+        },
+        "paymentMethod": {
+          "type": "string",
+          "description": "Payment method (bKash, Nagad, Cash, Rocket, Bank)",
+          "maxLength": 64
+        },
+        "transactionId": {
+          "type": "string",
+          "description": "Bank or MFS transaction reference ID",
+          "maxLength": 64
+        },
+        "paymentDate": {
+          "type": "string",
+          "description": "Date payment was received (YYYY-MM-DD)",
+          "maxLength": 32
+        },
+        "notes": {
+          "type": "string",
+          "description": "Additional remarks or receipt note",
+          "maxLength": 256
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp when record was logged"
+        }
+      },
+      "required": ["customerUid", "customerName", "amount", "paymentMethod", "paymentDate"]
+    },
+    "searchOperator": {
+      "title": "Search Operator",
+      "description": "Authorized search operator credentials and permissions",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "username": { "type": "string" },
+        "password": { "type": "string" },
+        "role": { "type": "string" },
+        "status": { "type": "string" },
+        "loginCount": { "type": "number" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "name", "username", "password", "status"]
+    },
+    "adminAccount": {
+      "title": "Admin Account",
+      "description": "Admin and manager access credentials and permissions",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "username": { "type": "string" },
+        "password": { "type": "string" },
+        "name": { "type": "string" },
+        "role": { "type": "string" },
+        "status": { "type": "string" }
+      },
+      "required": ["id", "username", "password", "name", "role", "status"]
+    },
+    "whatsappLog": {
+      "title": "WhatsApp Log",
+      "description": "Log of WhatsApp alerts sent to customers",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "customerId": { "type": "string" },
+        "customerUid": { "type": "string" },
+        "customerName": { "type": "string" },
+        "phone": { "type": "string" },
+        "status": { "type": "string" },
+        "gateway": { "type": "string" },
+        "messageSnippet": { "type": "string" },
+        "timestamp": { "type": "string" }
+      },
+      "required": ["id", "customerId", "customerUid", "customerName", "phone", "status", "timestamp"]
+    }
+  },
+  "firestore": {
+    "/customers/{customerId}": {
+      "schema": { "$ref": "customer" },
+      "description": "Collection of all ISP WiFi customers"
+    },
+    "/payments/{paymentId}": {
+      "schema": { "$ref": "payment" },
+      "description": "Collection of billing and transaction logs"
+    },
+    "/search_operators/{operatorId}": {
+      "schema": { "$ref": "searchOperator" },
+      "description": "Collection of authorized search desk operators"
+    },
+    "/admin_accounts/{accountId}": {
+      "schema": { "$ref": "adminAccount" },
+      "description": "Collection of admin manager accounts"
+    },
+    "/whatsapp_logs/{logId}": {
+      "schema": { "$ref": "whatsappLog" },
+      "description": "Collection of customer WhatsApp alert logs"
+    }
+  }
+}

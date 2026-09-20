@@ -1,0 +1,65 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Default deny for unhandled paths
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Customers Collection
+    match /customers/{customerId} {
+      allow read, write: if true;
+    }
+
+    // Payments Collection
+    match /payments/{paymentId} {
+      allow read, write: if true;
+    }
+
+    // Packages Collection (Available Internet Packages)
+    match /packages/{packageId} {
+      allow read, write: if true;
+    }
+
+    // Settings Collection (ISP Profile & Brand Configurations)
+    match /settings/{settingId} {
+      allow read, write: if true;
+    }
+
+    // Payment Requests
+    match /payment_requests/{requestId} {
+      allow read, write: if true;
+    }
+
+    // Support Tickets
+    match /support_tickets/{ticketId} {
+      allow read, write: if true;
+    }
+
+    // Search Operators Collection
+    match /search_operators/{operatorId} {
+      allow read, write: if true;
+    }
+
+    // Search Operator Audit Logs
+    match /search_operator_logs/{logId} {
+      allow read, write: if true;
+    }
+
+    // Admin Accounts Collection
+    match /admin_accounts/{accountId} {
+      allow read, write: if true;
+    }
+
+    // Admin Audit Logs Collection
+    match /admin_audit_logs/{logId} {
+      allow read, write: if true;
+    }
+
+    // WhatsApp Notification and Delivery Logs
+    match /whatsapp_logs/{logId} {
+      allow read, write: if true;
+    }
+  }
+}
